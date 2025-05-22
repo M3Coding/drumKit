@@ -7,6 +7,7 @@ function handleClick() {
     var buttonInnerHtml = this.innerHTML; //store the button being clicked
     //each case in the switch statement takes the innerHTML letter and connects it to a sound. And when the button is clicked it stops at the break. Default statement is for when something goes wrong. 
     makeSound(buttonInnerHtml);
+    buttonAnimation(buttonInnerHtml);
 
     //alert ("I've been clicked");
 } //this function is called to give an alert every time a button is clicked. 
@@ -14,7 +15,8 @@ function handleClick() {
 //key press
 document.addEventListener("keydown", function(e) {
     makeSound(e.key);
-});
+    buttonAnimation(e.key);
+}); //added key press by grabbing the entire document catching the event with e and using dot notation to capture the particular key of that event. 
 function makeSound(key) {
     switch (key){
         case "w":
@@ -50,5 +52,15 @@ function makeSound(key) {
 
     }
     
+
+}
+
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+
+    setTimeout(function (){
+        activeButton.classList.remove("pressed");
+    }, 100);
 
 }
