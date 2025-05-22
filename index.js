@@ -1,11 +1,22 @@
-var allButtons= document.querySelectorAll("button");// a vaariable is set to the function that gives a list of items(buttons) to iterate through. A variable is set to use in the for loop. 
+var allButtons= document.querySelectorAll(".drum");// a vaariable is set to the function that gives a list of items(buttons) to iterate through. A variable is set to use in the for loop. 
 for(var i= 0; i< allButtons.length; i++){ //for loop is used to iterate through the list of items from allButtons. 
 allButtons[i].addEventListener ("click", handleClick ); //the list of buttons are captured again but in iteration with [i] and an event listener is added to them.
 }
+//button press
 function handleClick() {
     var buttonInnerHtml = this.innerHTML; //store the button being clicked
     //each case in the switch statement takes the innerHTML letter and connects it to a sound. And when the button is clicked it stops at the break. Default statement is for when something goes wrong. 
-    switch (buttonInnerHtml){
+    makeSound(buttonInnerHtml);
+
+    //alert ("I've been clicked");
+} //this function is called to give an alert every time a button is clicked. 
+
+//key press
+document.addEventListener("keydown", function(e) {
+    makeSound(e.key);
+});
+function makeSound(key) {
+    switch (key){
         case "w":
             var snare = new Audio("./sounds/snare.mp3");
             snare.play();
@@ -40,5 +51,4 @@ function handleClick() {
     }
     
 
-    //alert ("I've been clicked");
-} //this function is called to give an alert every time a button is clicked. 
+}
